@@ -1,26 +1,233 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --romantic-rose: #e8a0a8;
+  --romantic-blush: #f8e8ec;
+  --romantic-deep: #c45c6a;
+  --romantic-warm: #fdf2f4;
+  --romantic-text: #4a3c3e;
+  --romantic-text-soft: #6b5b5d;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Georgia", "Cambria", "Times New Roman", Times, serif;
+  background: linear-gradient(165deg, var(--romantic-warm) 0%, var(--romantic-blush) 50%, #fff0f3 100%);
+  color: var(--romantic-text);
+  min-height: 100vh;
+  min-height: 100dvh;
+  padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Floating hearts – visible from bottom through mid screen, then fade out */
+@keyframes float-up {
+  0% {
+    transform: translateY(0) scale(0.5);
+    opacity: 0;
+  }
+
+  8% {
+    opacity: 0.85;
+  }
+
+  50% {
+    transform: translateY(-50vh) scale(0.85);
+    opacity: 0.8;
+  }
+
+  85% {
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: translateY(-105vh) scale(0.9);
+    opacity: 0;
+  }
+}
+
+@keyframes float-up-slow {
+  0% {
+    transform: translateY(0) scale(0.45);
+    opacity: 0;
+  }
+
+  12% {
+    opacity: 0.8;
+  }
+
+  50% {
+    transform: translateY(-50vh) scale(0.75);
+    opacity: 0.75;
+  }
+
+  88% {
+    opacity: 0.4;
+  }
+
+  100% {
+    transform: translateY(-102vh) scale(0.8);
+    opacity: 0;
+  }
+}
+
+@keyframes pulse-heart {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 0.9;
+  }
+
+  50% {
+    transform: scale(1.08);
+    opacity: 1;
+  }
+}
+
+.heart-float {
+  position: fixed;
+  pointer-events: none;
+  z-index: 0;
+  animation: float-up 8s ease-in infinite;
+}
+
+.heart-float-slow {
+  animation: float-up-slow 12s ease-in infinite;
+}
+
+.heart-pulse {
+  animation: pulse-heart 1.2s ease-in-out infinite;
+}
+
+/* Playful escape button */
+@keyframes wiggle {
+
+  0%,
+  100% {
+    transform: translate(-50%, -50%) rotate(-3deg);
+  }
+
+  25% {
+    transform: translate(-50%, -50%) rotate(4deg) scale(1.05);
+  }
+
+  50% {
+    transform: translate(-50%, -50%) rotate(-2deg);
+  }
+
+  75% {
+    transform: translate(-50%, -50%) rotate(3deg) scale(1.05);
+  }
+}
+
+.escape-btn {
+  position: absolute;
+  min-height: 48px;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #6b5b5d;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(232, 160, 168, 0.6);
+  border-radius: 9999px;
+  box-shadow: 0 4px 12px rgba(196, 92, 106, 0.2);
+  cursor: pointer;
+  transition: box-shadow 0.2s, border-color 0.2s;
+  -webkit-tap-highlight-color: transparent;
+  touch-action: manipulation;
+  z-index: 10;
+}
+
+.escape-btn:hover,
+.escape-btn:focus-visible {
+  border-color: #e8a0a8;
+  box-shadow: 0 6px 16px rgba(196, 92, 106, 0.25);
+}
+
+.escape-btn.escape-btn--wiggle {
+  animation: wiggle 0.5s ease-in-out;
+}
+
+@media (min-width: 640px) {
+  .escape-btn {
+    min-height: 44px;
+    padding: 0.625rem 1.125rem;
+    font-size: 0.9rem;
+  }
+}
+
+/* Prose readability */
+.proposal-text {
+  color: var(--romantic-text);
+  line-height: 1.7;
+  letter-spacing: 0.01em;
+}
+
+.proposal-text-lg {
+  font-size: clamp(1.125rem, 2.5vw, 1.35rem);
+}
+
+.proposal-text-xl {
+  font-size: clamp(1.35rem, 3vw, 1.75rem);
+}
+
+.proposal-text-2xl {
+  font-size: clamp(1.5rem, 4vw, 2.25rem);
+}
+
+/* Buttons – explicit styles so they always look correct */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 52px;
+  padding: 0.875rem 1.75rem;
+  font-size: 1rem;
+  font-weight: 600;
+  line-height: 1.5;
+  border-radius: 1rem;
+  transition: transform 0.2s, box-shadow 0.2s, background-color 0.2s, border-color 0.2s;
+  cursor: pointer;
+}
+
+@media (min-width: 640px) {
+  .btn {
+    padding: 1rem 2rem;
+    font-size: 1.125rem;
+  }
+}
+
+.btn:active {
+  transform: scale(0.98);
+}
+
+.btn-primary {
+  color: #fff;
+  background: linear-gradient(180deg, #c45c6a 0%, #b04d5a 100%);
+  border: 1px solid rgba(232, 160, 168, 0.5);
+  box-shadow: 0 4px 14px rgba(196, 92, 106, 0.35);
+}
+
+.btn-primary:hover {
+  background: linear-gradient(180deg, #b04d5a 0%, #9a4150 100%);
+  box-shadow: 0 8px 20px rgba(196, 92, 106, 0.4);
+  transform: scale(1.02);
+}
+
+.btn-secondary {
+  color: #6b5b5d;
+  background: rgba(255, 255, 255, 0.95);
+  border: 2px solid rgba(232, 160, 168, 0.7);
+  box-shadow: 0 2px 8px rgba(196, 92, 106, 0.1);
+}
+
+.btn-secondary:hover {
+  border-color: #c45c6a;
+  background: #fff;
+  box-shadow: 0 4px 14px rgba(196, 92, 106, 0.15);
+  transform: scale(1.02);
 }
