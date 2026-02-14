@@ -127,6 +127,7 @@ body {
 .escape-btn {
   position: absolute;
   min-height: 48px;
+  min-width: 120px;
   padding: 0.75rem 1.25rem;
   font-size: 0.95rem;
   font-weight: 600;
@@ -140,6 +141,8 @@ body {
   -webkit-tap-highlight-color: transparent;
   touch-action: manipulation;
   z-index: 10;
+  white-space: nowrap;
+  user-select: none;
 }
 
 .escape-btn:hover,

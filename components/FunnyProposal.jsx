@@ -15,9 +15,13 @@ export default function FunnyProposal({ onYes }) {
         Will you walk with me — with patience, honesty,
         and a little bit of chaos? 💖
       </AnimatedText>
-      <div className="relative w-full min-h-[120px] sm:min-h-[80px] flex flex-col sm:flex-row gap-4 justify-center items-center px-2">
-        <PrimaryButton onClick={onYes}>YES ❤️</PrimaryButton>
-        <EscapeButton />
+      <div className="relative w-full flex flex-col sm:flex-row gap-4 justify-center items-center px-2">
+        <div className="flex justify-center sm:min-h-[80px] sm:items-center">
+          <PrimaryButton onClick={onYes}>YES ❤️</PrimaryButton>
+        </div>
+        <div className="relative w-full min-h-[100px] sm:min-h-[80px] sm:w-auto sm:flex-1 flex items-center justify-center">
+          <EscapeButton />
+        </div>
       </div>
     </div>
   );
