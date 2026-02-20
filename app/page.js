@@ -157,7 +157,8 @@ export default function Home() {
         {step === 8 && (
           <motion.div key="step8" {...fadeInOut}>
             <Section>
-              <span className="inline-block text-4xl sm:text-5xl mb-4">😌</span>
+            <Illustration src="/rathi.jpg" alt="You" />
+              {/* <span className="inline-block text-4xl sm:text-5xl mb-4">😌</span> */}
               <AnimatedText delay={0.2} size="xl">
                 So… this is where the website ends.
               </AnimatedText>
